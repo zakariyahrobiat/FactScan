@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -48,3 +49,7 @@ export default tseslint.config({
   },
 })
 ```
+=======
+# FactScan
+A web app for scanning barcodes to verify product authenticity, focused on food and cosmetics. Built with React, TypeScript, TailwindCSS, and Context API for a seamless and responsive user experience.
+>>>>>>> cd0b0544a7d7737ee740c0e815bbe580bfd9b4a9
