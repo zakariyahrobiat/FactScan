@@ -7,7 +7,9 @@ export default {
   theme: {
     extend: {
       colors:{
-        customGray:"#F9F9F9"
+        customGray:"#F9F9F9",
+        darkGray:"#333333",
+        button:"#42A5F5"
       }
     },
   },
