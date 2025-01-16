@@ -12,7 +12,8 @@ error: string | null,
 videoRef:React.RefObject<HTMLVideoElement>, 
 barCode: null | string,
 data:inputField, 
-handleInput:(e:React.ChangeEvent<HTMLInputElement>)=>void
+handleInput:(e:React.ChangeEvent<HTMLInputElement>)=>void,
+startScanner:()=>void
 }
 export const AppContext = createContext<AuthContextType>({
 toggleMenu:()=>{},
@@ -22,7 +23,8 @@ error: null,
 videoRef: { current: null },
 barCode: null,
 data:{inputBarcode:""},
-handleInput:()=>{}
+handleInput:()=>{},
+startScanner:()=>{}
 })
 export const AuthContext = ({children}:PropsWithChildren) => {
       const [isOpen, setIsOpen] = useState(false)
@@ -35,11 +37,16 @@ export const AuthContext = ({children}:PropsWithChildren) => {
       const {name, value} = e.target
       setData((data)=>({...data, [name]:value}))
   } 
-  useEffect(() => {
+  
     const codeReader = new BrowserMultiFormatReader();
-
+   
     const startScanner = () => {
-      if (!videoRef.current) return;
+      console.log("yes");
+      
+      if (!videoRef.current) {
+        setError("No video element found.");
+        return;
+      }
 
       codeReader.decodeFromVideoDevice(null, videoRef.current, (result, err) => {
         if (result) {
@@ -57,8 +64,8 @@ export const AuthContext = ({children}:PropsWithChildren) => {
       });
     };
 
-    startScanner();
-
+    
+    useEffect(() => {
     return () => {
       codeReader.reset(); // Clean up
     };
@@ -90,7 +97,8 @@ export const AuthContext = ({children}:PropsWithChildren) => {
         error:error,
         videoRef:videoRef,
         barCode:barCode, data:data,
-        handleInput:handleInput
+        handleInput:handleInput,
+        startScanner:startScanner
     }}>{children}</AppContext.Provider>
   )
 }
