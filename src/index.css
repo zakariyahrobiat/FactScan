@@ -63,9 +63,9 @@
   position: absolute;
   width: 70%;
   height: 40%;
-  border: 4px dashed #10b981; 
+  border: 4px dashed red; 
   z-index: 3;
-  box-shadow: 0 0 20px rgba(16, 185, 129, 0.6); 
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.6); 
   border-radius: 8px; 
 }
 
@@ -84,6 +84,8 @@
 .scanner-overlay .overlay::after {
   content: "";
   position: absolute;
+  width: 100%;
+  height: 100%;
   border: 4px solid transparent;
   z-index: 3;
   animation: scanning 2s infinite;
@@ -91,13 +93,13 @@
 
 @keyframes scanning {
   0% {
-    border-color: rgba(16, 185, 129, 0.3); 
+    border-color: rgba(255, 0, 0, 0.3); 
   }
   50% {
-    border-color: rgba(16, 185, 129, 0.8);
+    border-color: rgba(255, 0, 0, 0.8);
   }
   100% {
-    border-color: rgba(16, 185, 129, 0.3); 
+    border-color: rgba(255, 0, 0, 0.3); 
   }
 }  
 
