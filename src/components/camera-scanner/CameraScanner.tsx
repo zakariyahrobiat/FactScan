@@ -18,14 +18,14 @@ const CameraScanner = () => {
       {/* <p className="text-gray-500">Align the barcode within the frame.</p> */}
       <video ref={videoRef} className=" rounded shadow-md" />
      
-      {barCode && <p className="absolute bottom-20 z-10 text-green-500 bg-white px-4 py-2 rounded-lg shadow-md mt-4 font-medium">Detected Barcode: <span className="font-bold">{barCode}</span></p>}
-      {error && <p className="absolute top-5 z-10 text-red-500 bg-white px-4 py-2 rounded-lg shadow-md mt-4 font-medium">Error: <span className="font-bold">{error}</span></p>}
-      <button
-          className=" absolute bottom-3 z-10 bg-blue-500 text-white px-5 py-2 rounded shadow-md"
+      {barCode && <p className="absolute bottom-3 z-10 text-green-500 bg-white px-5 py-2 rounded-lg shadow-md font-medium">Detected Barcode: <span className="font-bold">{barCode}</span></p> || <button
+          className=" absolute bottom-3 z-10 bg-blue-500 text-white px-5 py-2 rounded shadow-md font-medium"
           onClick={startScanner}
         >
           Start Scanning
-        </button>
+        </button>}
+      {error && <p className="absolute top-2 z-10 text-red-500 bg-white px-4 py-2 rounded-lg shadow-md font-medium">Error: <span className="font-bold">{error}</span></p>}
+      
     </div>
 
     <div className="p-6 h-full bg-white rounded shadow-md flex flex-col items-center">

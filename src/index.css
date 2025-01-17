@@ -63,9 +63,9 @@
   position: absolute;
   width: 70%;
   height: 40%;
-  border: 4px dashed red; 
+  border: 4px dashed #10b981; 
   z-index: 3;
-  box-shadow: 0 0 10px rgba(255, 0, 0, 0.6); 
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.6); 
   border-radius: 8px; 
 }
 
@@ -93,13 +93,13 @@
 
 @keyframes scanning {
   0% {
-    border-color: rgba(255, 0, 0, 0.3); 
+    border-color: rgba(16, 185, 129, 0.1); 
   }
   50% {
-    border-color: rgba(255, 0, 0, 0.8);
+    border-color: rgba(16, 185, 129, 0.8);
   }
   100% {
-    border-color: rgba(255, 0, 0, 0.3); 
+    border-color: rgba(16, 185, 129, 0.1); 
   }
 }  
 
