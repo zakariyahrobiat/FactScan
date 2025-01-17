@@ -13,8 +13,8 @@ const CameraScanner = () => {
     <div className="w-full px-5 md:px-20 bg-slate-100 py-4 gap-10 grid md:grid-cols-2 items-start h-full">
     <div className="scanner-overlay  ">
     <div className="overlay"></div>
-  <div className="overlay-frame  "></div>
-     {/* <div className="absolute inset-0 border-4 border-dashed border-green-500 rounded-md" /> */}
+  <div className="overlay-frame "> <div className="absolute inset-0 border-2 border-dashed border-green-500 rounded-md" /></div>
+    
       {/* <p className="text-gray-500">Align the barcode within the frame.</p> */}
       <video ref={videoRef} className=" rounded shadow-md" />
      
