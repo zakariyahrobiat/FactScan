@@ -4,6 +4,12 @@ import { BrowserMultiFormatReader } from "@zxing/library"
  interface inputField{
 inputBarcode:string
 }
+interface productDetail{
+  id:number,
+  name: string,
+  barcode:number,
+  manufacture: string
+}
 interface AuthContextType{
 toggleMenu:()=>void,
 isOpen:boolean,
@@ -13,7 +19,9 @@ videoRef:React.RefObject<HTMLVideoElement>,
 barCode: null | string,
 data:inputField, 
 handleInput:(e:React.ChangeEvent<HTMLInputElement>)=>void,
-startScanner:()=>void
+startScanner:()=>void,
+product:null | productDetail,
+handleScan:()=> void
 }
 export const AppContext = createContext<AuthContextType>({
 toggleMenu:()=>{},
@@ -24,7 +32,9 @@ videoRef: { current: null },
 barCode: null,
 data:{inputBarcode:""},
 handleInput:()=>{},
-startScanner:()=>{}
+startScanner:()=>{},
+product:null,
+handleScan:()=>{}
 })
 export const AuthContext = ({children}:PropsWithChildren) => {
       const [isOpen, setIsOpen] = useState(false)
@@ -33,6 +43,25 @@ export const AuthContext = ({children}:PropsWithChildren) => {
       const [barCode, setBarCode] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [data, setData]= useState<inputField>({inputBarcode:""})  
+  const [productData, setProductData] = useState({Qrcode:"6154000122966"})
+  const [product, setProduct] = useState<productDetail | null>(null)
+  const handleScan = async()=>{
+ 
+    
+    const url = "https://product-scanner-cqro.onrender.com/api/v1/products/scan"
+    const input = data.inputBarcode
+    const fetchUrl = await fetch(url,{
+      method: "POST",
+      headers: {
+          'content-Type': 'application/json',
+               },
+      body: JSON.stringify(productData)
+  });
+    const fetchData = await fetchUrl.json()
+    setProduct(fetchData)
+    console.log(fetchData);
+    
+  }
   const handleInput=(e:React.ChangeEvent<HTMLInputElement>)=>{
       const {name, value} = e.target
       setData((data)=>({...data, [name]:value}))
@@ -41,7 +70,7 @@ export const AuthContext = ({children}:PropsWithChildren) => {
     const codeReader = new BrowserMultiFormatReader();
    
     const startScanner = () => {
-      console.log("yes");
+     
       
       if (!videoRef.current) {
         setError("No video element found.");
@@ -98,7 +127,9 @@ export const AuthContext = ({children}:PropsWithChildren) => {
         videoRef:videoRef,
         barCode:barCode, data:data,
         handleInput:handleInput,
-        startScanner:startScanner
+        startScanner:startScanner,
+        product:product,
+        handleScan:handleScan
     }}>{children}</AppContext.Provider>
   )
 }
