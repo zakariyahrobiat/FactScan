@@ -3,7 +3,7 @@ import UseAuth from "../../hooks/UseAuth"
 
 const CameraScanner = () => {
 
-    const {error, videoRef, barCode, data, handleInput, startScanner, handleScan} = UseAuth() 
+    const {error, videoRef, barCode, data, handleInput, product, startScanner, handleScan} = UseAuth() 
     const {inputBarcode}= data
   return (
     <div className="w-full ">
@@ -54,10 +54,10 @@ const CameraScanner = () => {
     </div>
   </div>
   <div className="w-full  px-5 md:px-20 md:py-10">
-    <h3>Product Name: Milk bite</h3>
-    <p>Manufacturer: Yale Foods</p>
-    <p>Category: Food</p>
-    <p>Authenticity: Geninue</p>
+    <h3>Product Name: {product?.["Product Name"]}</h3>
+    <p>Manufacturer: {product?.Manufacturer}</p>
+    <p>Category: {product?.category}</p>
+    <p>Authenticity: {product?.Authenticity}</p>
     <button className="bg-blue-500 text-white px-5 py-2 rounded shadow-md font-medium">Learn More</button>
   </div>
   </div>

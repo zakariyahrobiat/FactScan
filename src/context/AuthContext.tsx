@@ -8,7 +8,17 @@ interface productDetail{
   id:number,
   name: string,
   barcode:number,
-  manufacture: string
+  Manufacturer: string,
+  
+Authenticity: string,
+
+
+
+ "Product Name": string,
+
+category: string
+
+
 }
 interface AuthContextType{
 toggleMenu:()=>void,
@@ -43,13 +53,16 @@ export const AuthContext = ({children}:PropsWithChildren) => {
       const [barCode, setBarCode] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [data, setData]= useState<inputField>({inputBarcode:""})  
-  const [productData, setProductData] = useState({Qrcode:"6154000122966"})
+  const [productData, setProductData] = useState({barcode:''})
   const [product, setProduct] = useState<productDetail | null>(null)
-  const handleScan = async()=>{
- 
+  useEffect(()=>{
+    setProductData({barcode: data.inputBarcode})
+  },[data.inputBarcode])
+  const handleScan = async(e: React.FormEvent)=>{
+ e.preventDefault()
     
     const url = "https://product-scanner-cqro.onrender.com/api/v1/products/scan"
-    const input = data.inputBarcode
+   
     const fetchUrl = await fetch(url,{
       method: "POST",
       headers: {
@@ -58,8 +71,8 @@ export const AuthContext = ({children}:PropsWithChildren) => {
       body: JSON.stringify(productData)
   });
     const fetchData = await fetchUrl.json()
-    setProduct(fetchData)
-    console.log(fetchData);
+    setProduct(fetchData.product)
+    console.log(fetchData.product);
     
   }
   const handleInput=(e:React.ChangeEvent<HTMLInputElement>)=>{
