@@ -46,28 +46,21 @@ export const AuthContext = ({children}:PropsWithChildren) => {
       const [barCode, setBarCode] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [data, setData]= useState<inputField>({inputBarcode:""})  
-  const [productData, setProductData] = useState({barcode:''})
+  // const [productData, setProductData] = useState({barcode:''})
   const [productDetails, setProductDetails] = useState<productDetail | null>(null)
-  useEffect(()=>{
-    if (barCode){
-setProductData({barcode:barCode})
-    }
-    else{
-      setProductData({barcode: data.inputBarcode})
-    }
 
-  },[barCode, data.inputBarcode])
   const handleScan = async(e?: React.FormEvent)=>{
  e?.preventDefault()
     
     const url = "https://product-scanner-cqro.onrender.com/api/v1/products/scan"
+   const dataToSend = {barcode: barCode || data.inputBarcode}
    try{
     const fetchUrl = await fetch(url,{
       method: "POST",
       headers: {
           'content-Type': 'application/json',
                },
-      body: JSON.stringify(productData)
+      body: JSON.stringify(dataToSend)
   });
   const fetchData = await fetchUrl.json()
   console.log(fetchData);
@@ -119,7 +112,9 @@ setProductDetails({
 
       codeReader.decodeFromVideoDevice(null, videoRef.current, (result, err) => {
         if (result) {
-          setBarCode(result.getText()); // Set detected barcode
+          const detectedBarcode = result.getText();
+          setBarCode(detectedBarcode); // Set detected barcode
+          setProductData({ barcode: detectedBarcode })
           console.log("Barcode detected:", result.getText());
          
         }
