@@ -18,7 +18,7 @@ const CameraScanner = () => {
      
       {barCode && <p className="absolute bottom-3 z-10 text-green-500 bg-white px-5 py-2 rounded-lg shadow-md font-medium">Detected Barcode: <span className="font-bold">{barCode}</span></p> || <button
           className=" absolute bottom-3 z-[5] bg-blue-500 text-white px-5 py-2 rounded shadow-md font-medium"
-          onClick={()=>{startScanner(); handleScan()}}
+          onClick={(e: React.FormEvent)=>{startScanner(); handleScan(e);}}
         >
           Start Scanning
         </button>}
