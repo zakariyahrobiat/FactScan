@@ -16,9 +16,10 @@ const CameraScanner = () => {
       {/* <p className="text-gray-500">Align the barcode within the frame.</p> */}
       <video ref={videoRef} className=" rounded shadow-md" />
      
-      {barCode && <><p className="absolute bottom-6 z-10 text-green-500 bg-white px-5 py-2 rounded-lg shadow-md font-medium">Detected Barcode: <span className="font-bold">{barCode}</span></p>
-      <button className=" absolute bottom-3 z-[5] bg-blue-500 text-white px-5 py-2 rounded shadow-md font-medium"
+      {barCode && <><p className="absolute bottom-10 z-10 text-green-500 bg-white px-5 py-2 rounded-lg shadow-md font-medium">Detected Barcode: <span className="font-bold">{barCode}</span></p>
+      <button className=" absolute bottom-1 z-[5] bg-blue-500 text-white px-5 py-2 rounded shadow-md font-medium"
       onClick={ handleScan} >
+         Scan Now
       </button>
       </>
       || <button
