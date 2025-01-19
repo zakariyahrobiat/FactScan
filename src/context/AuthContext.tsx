@@ -121,8 +121,7 @@ setProductDetails({
         if (result) {
           setBarCode(result.getText()); // Set detected barcode
           console.log("Barcode detected:", result.getText());
-          codeReader.reset(); // Stop scanning
-          handleScan(); 
+         
         }
         if (err && !(err instanceof Error)) {
           setError("Failed to scan barcode.");
