@@ -5,20 +5,13 @@ import { BrowserMultiFormatReader } from "@zxing/library"
 inputBarcode:string
 }
 interface productDetail{
-  id:number,
-  name: string,
-  barcode:number,
-  Manufacturer: string,
-  
-Authenticity: string,
-
-
-
- "Product Name": string,
-
-category: string
-
-
+  message:string,
+  product:{
+    Manufacturer: string,
+    Authenticity: string,
+   "Product Name": string,
+  category: string
+  },
 }
 interface AuthContextType{
 toggleMenu:()=>void,
@@ -30,8 +23,8 @@ barCode: null | string,
 data:inputField, 
 handleInput:(e:React.ChangeEvent<HTMLInputElement>)=>void,
 startScanner:()=>void,
-product:null | productDetail,
-handleScan:()=> void
+productDetails:null | productDetail,
+handleScan:(e:React.FormEvent)=> void,
 }
 export const AppContext = createContext<AuthContextType>({
 toggleMenu:()=>{},
@@ -43,7 +36,7 @@ barCode: null,
 data:{inputBarcode:""},
 handleInput:()=>{},
 startScanner:()=>{},
-product:null,
+productDetails:null,
 handleScan:()=>{}
 })
 export const AuthContext = ({children}:PropsWithChildren) => {
@@ -54,9 +47,15 @@ export const AuthContext = ({children}:PropsWithChildren) => {
   const [error, setError] = useState<string | null>(null);
   const [data, setData]= useState<inputField>({inputBarcode:""})  
   const [productData, setProductData] = useState({barcode:''})
-  const [product, setProduct] = useState<productDetail | null>(null)
+  const [productDetails, setProductDetails] = useState<productDetail | null>(null)
   useEffect(()=>{
-    setProductData({barcode: data.inputBarcode})
+    if (barCode){
+setProductData({barcode:barCode})
+    }
+    else{
+      setProductData({barcode: data.inputBarcode})
+    }
+
   },[data.inputBarcode])
   const handleScan = async(e: React.FormEvent)=>{
  e.preventDefault()
@@ -71,8 +70,8 @@ export const AuthContext = ({children}:PropsWithChildren) => {
       body: JSON.stringify(productData)
   });
     const fetchData = await fetchUrl.json()
-    setProduct(fetchData.product)
-    console.log(fetchData.product);
+    setProductDetails(fetchData)
+    console.log(fetchData);
     
   }
   const handleInput=(e:React.ChangeEvent<HTMLInputElement>)=>{
@@ -141,7 +140,7 @@ export const AuthContext = ({children}:PropsWithChildren) => {
         barCode:barCode, data:data,
         handleInput:handleInput,
         startScanner:startScanner,
-        product:product,
+        productDetails:productDetails,
         handleScan:handleScan
     }}>{children}</AppContext.Provider>
   )

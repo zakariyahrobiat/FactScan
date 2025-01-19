@@ -3,7 +3,8 @@ import UseAuth from "../../hooks/UseAuth"
 
 const CameraScanner = () => {
 
-    const {error, videoRef, barCode, data, handleInput, product, startScanner, handleScan} = UseAuth() 
+    const {error, videoRef, barCode, data, handleInput, productDetails, startScanner, handleScan} = UseAuth() 
+    
     const {inputBarcode}= data
   return (
     <div className="w-full ">
@@ -16,8 +17,8 @@ const CameraScanner = () => {
       <video ref={videoRef} className=" rounded shadow-md" />
      
       {barCode && <p className="absolute bottom-3 z-10 text-green-500 bg-white px-5 py-2 rounded-lg shadow-md font-medium">Detected Barcode: <span className="font-bold">{barCode}</span></p> || <button
-          className=" absolute bottom-3 z-10 bg-blue-500 text-white px-5 py-2 rounded shadow-md font-medium"
-          onClick={startScanner}
+          className=" absolute bottom-3 z-[5] bg-blue-500 text-white px-5 py-2 rounded shadow-md font-medium"
+          onClick={()=>{startScanner; handleScan}}
         >
           Start Scanning
         </button>}
@@ -53,13 +54,21 @@ const CameraScanner = () => {
       </button>
     </div>
   </div>
-  <div className="w-full  px-5 md:px-20 md:py-10">
-    <h3>Product Name: {product?.["Product Name"]}</h3>
-    <p>Manufacturer: {product?.Manufacturer}</p>
-    <p>Category: {product?.category}</p>
-    <p>Authenticity: {product?.Authenticity}</p>
-    <button className="bg-blue-500 text-white px-5 py-2 rounded shadow-md font-medium">Learn More</button>
-  </div>
+  
+    {productDetails && (
+      <div className="w-full  px-5 md:px-20 md:py-10">
+ <h3>Product Name: {productDetails.product["Product Name"] || "NA"}</h3>
+ <p>Category: {productDetails.product.category || "NA"}</p>
+ <p>Authenticity: {productDetails.product.Authenticity || "NA"}</p>
+ <p>{productDetails.message}</p>
+ <button className="bg-blue-500 text-white px-5 py-2 rounded shadow-md font-medium">Learn More</button>
+</div>
+    ) ||
+    (
+      <p>{productDetails?.message}</p>
+    )
+    }
+   
   </div>
  
   )
