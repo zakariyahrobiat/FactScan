@@ -56,12 +56,12 @@ setProductData({barcode:barCode})
       setProductData({barcode: data.inputBarcode})
     }
 
-  },[data.inputBarcode])
-  const handleScan = async(e: React.FormEvent)=>{
- e.preventDefault()
+  },[barCode, data.inputBarcode])
+  const handleScan = async(e?: React.FormEvent)=>{
+ e?.preventDefault()
     
     const url = "https://product-scanner-cqro.onrender.com/api/v1/products/scan"
-   
+   try{
     const fetchUrl = await fetch(url,{
       method: "POST",
       headers: {
@@ -69,10 +69,38 @@ setProductData({barcode:barCode})
                },
       body: JSON.stringify(productData)
   });
-    const fetchData = await fetchUrl.json()
+  const fetchData = await fetchUrl.json()
+  console.log(fetchData);
+  
+  if (fetchData.product){
     setProductDetails(fetchData)
-    console.log(fetchData);
-    
+  }
+  else{
+    setProductDetails({
+      message: fetchData.message || "No match found for the entered barcode.",
+      product:{
+      Manufacturer: "NA",
+      Authenticity: "NA",
+      "Product Name": "NA",
+      category: "NA",
+      },
+    })
+  }
+}
+catch(error){
+console.error("Error scanning product:", error);
+setProductDetails({
+  message: "An error occurred while scanning. Please try again.",
+  product:{
+    Manufacturer: "NA",
+      Authenticity: "NA",
+      "Product Name": "NA",
+      category: "NA",
+  }
+})
+}
+   
+   
   }
   const handleInput=(e:React.ChangeEvent<HTMLInputElement>)=>{
       const {name, value} = e.target
@@ -93,6 +121,8 @@ setProductData({barcode:barCode})
         if (result) {
           setBarCode(result.getText()); // Set detected barcode
           console.log("Barcode detected:", result.getText());
+          codeReader.reset(); // Stop scanning
+          handleScan(); 
         }
         if (err && !(err instanceof Error)) {
           setError("Failed to scan barcode.");

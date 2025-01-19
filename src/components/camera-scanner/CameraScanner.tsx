@@ -18,7 +18,7 @@ const CameraScanner = () => {
      
       {barCode && <p className="absolute bottom-3 z-10 text-green-500 bg-white px-5 py-2 rounded-lg shadow-md font-medium">Detected Barcode: <span className="font-bold">{barCode}</span></p> || <button
           className=" absolute bottom-3 z-[5] bg-blue-500 text-white px-5 py-2 rounded shadow-md font-medium"
-          onClick={()=>{startScanner; handleScan}}
+          onClick={()=>{startScanner(); handleScan()}}
         >
           Start Scanning
         </button>}
@@ -57,16 +57,13 @@ const CameraScanner = () => {
   
     {productDetails && (
       <div className="w-full  px-5 md:px-20 md:py-10">
- <h3>Product Name: {productDetails.product["Product Name"] || "NA"}</h3>
- <p>Category: {productDetails.product.category || "NA"}</p>
- <p>Authenticity: {productDetails.product.Authenticity || "NA"}</p>
+ <h3>Product Name: {productDetails.product["Product Name"] }</h3>
+ <p>Category: {productDetails.product.category }</p>
+ <p>Authenticity: {productDetails.product.Authenticity }</p>
  <p>{productDetails.message}</p>
  <button className="bg-blue-500 text-white px-5 py-2 rounded shadow-md font-medium">Learn More</button>
 </div>
-    ) ||
-    (
-      <p>{productDetails?.message}</p>
-    )
+    ) 
     }
    
   </div>
