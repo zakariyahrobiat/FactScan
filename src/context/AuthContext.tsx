@@ -61,7 +61,7 @@ setProductData({barcode:barCode})
  e?.preventDefault()
     
     const url = "https://product-scanner-cqro.onrender.com/api/v1/products/scan"
-  //  const dataToSend = {barcode: barCode || data.inputBarcode}
+
    try{
     const fetchUrl = await fetch(url,{
       method: "POST",

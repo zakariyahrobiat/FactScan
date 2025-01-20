@@ -16,7 +16,7 @@ const CameraScanner = () => {
       {/* <p className="text-gray-500">Align the barcode within the frame.</p> */}
       <video ref={videoRef} className=" rounded shadow-md" />
      
-      {barCode && <><p className="absolute bottom-10 z-10 text-green-500 bg-white px-5 py-2 rounded-lg shadow-md font-medium">Detected Barcode: <span className="font-bold">{barCode}</span></p>
+      {barCode && <><p className="absolute bottom-10n z-10 text-green-500 bg-white px-5 py-2 rounded-lg shadow-md font-medium">Detected Barcode: <span className="font-bold">{barCode}</span></p>
       <button className=" absolute bottom-1 z-[5] bg-blue-500 text-white px-5 py-2 rounded shadow-md font-medium"
       onClick={ handleScan} >
          Scan Now
@@ -60,18 +60,21 @@ const CameraScanner = () => {
       </button>
     </div>
   </div>
-  
+ 
     {productDetails && (
-      <div className="w-full  px-5 md:px-20 md:py-10">
- <h3>Product Name: {productDetails.product["Product Name"] }</h3>
- <p>Category: {productDetails.product.category }</p>
- <p>Authenticity: {productDetails.product.Authenticity }</p>
- <p>{productDetails.message}</p>
- <button className="bg-blue-500 text-white px-5 py-2 rounded shadow-md font-medium">Learn More</button>
+      <div className="w-full my-8 px-5 md:px-20 md:py-10 bg-white rounded shadow-md">
+      <div className=" rounded bg-gray-50 p-6 md:px-20 shadow-md transition hover:border-2 hover:border-blue-500 hover:-translate-y-2">
+        <h2 className="text-2xl font-bold text-center pb-5 text-gray-800">Scan Results</h2>
+ <h3 className="text-lg font-bold pb-2">Product Name: <span className="font-semibold">{productDetails.product["Product Name"] }</span></h3>
+ <p className="text-lg font-bold pb-2">Category: <span className="font-semibold">{productDetails.product.category }</span></p>
+ <p className="text-lg font-bold pb-2">Authenticity: <span className="font-semibold">{productDetails.product.Authenticity }</span></p>
+ <p className="font-bold text-lg ">{productDetails.message}</p>
+ <button className="bg-blue-500 text-white px-5 py-2 rounded shadow-md font-bold">Learn More</button>
+</div>
 </div>
     ) 
     }
-   
+
   </div>
  
   )
