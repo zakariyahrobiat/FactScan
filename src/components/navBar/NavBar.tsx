@@ -8,11 +8,11 @@ const NavBar = () => {
       <Link to="/">
         <p className="font-mono font-bold text-lg">FactScan</p>
       </Link>
-      <ul className={`absolute md:static md:flex justify-between items-center uppercase gap-x-5  bg-gray-800 md:bg-transparent right-0 top-full w-2/3 text-left md:w-auto md:opacity-100 transition-opacity duration-300 ease-in-out ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
-        <li className="p-4 md:p-0"><a href="" className="hover:text-gray-400 font-bold md:font-medium">Scan Product</a></li>
-        <li className="p-4 md:p-0"><a href="" className="hover:text-gray-400 font-bold md:font-medium">Search</a></li>
-        <li className="p-4 md:p-0 "><a href="" className="hover:text-gray-400 font-bold md:font-medium">About</a></li>
-        <li className="p-3 md:p-0"><a href="" className="hover:text-gray-400 font-bold md:font-medium">Contact</a></li>
+      <ul className={`absolute md:static md:flex justify-between items-center uppercase gap-x-5  bg-gray-800 md:bg-transparent right-0 top-full w-2/3 text-left md:w-auto transition-opacity duration-300 ease-in-out ${isOpen ? "block" : "hidden"}`}>
+        <li className="p-4 md:p-0"><Link to="/scanner" className="hover:text-gray-400 font-bold md:font-medium">Scan Product</Link></li>
+        <li className="p-4 md:p-0"><Link to="" className="hover:text-gray-400 font-bold md:font-medium">Search</Link></li>
+        <li className="p-4 md:p-0 "><Link to="" className="hover:text-gray-400 font-bold md:font-medium">About</Link></li>
+        <li className="p-3 md:p-0"><Link to="" className="hover:text-gray-400 font-bold md:font-medium">Contact</Link></li>
         <button className="my-3 md:m-0 md:hidden bg-button text-white py-1 px-3 md:py-2 md:px-5 font-bold rounded-lg w-full">
       Sign Up
       </button>
