@@ -8,7 +8,7 @@ const CameraScanner = () => {
     const {inputBarcode}= data
   return (
     <div className="w-full ">
-    <div className="w-full  bg-slate-100 px-5 md:px-20 md:py-10 gap-10 grid md:grid-cols-2 items-start h-full">
+    <div className="w-full  bg-slate-100 px-5 md:px-20 py-10 gap-10 grid md:grid-cols-2 items-start h-full">
     <div className="scanner-overlay  ">
     <div className="overlay"></div>
   <div className="overlay-frame "> <div className="absolute inset-0 border-2 border-dashed border-green-500 rounded-md" /></div>
@@ -16,19 +16,19 @@ const CameraScanner = () => {
       {/* <p className="text-gray-500">Align the barcode within the frame.</p> */}
       <video ref={videoRef} className=" rounded shadow-md" />
      
-      {barCode && <><p className="absolute bottom-10n z-10 text-green-500 bg-white px-5 py-2 rounded-lg shadow-md font-medium">Detected Barcode: <span className="font-bold">{barCode}</span></p>
-      <button className=" absolute bottom-1 z-[5] bg-blue-500 text-white px-5 py-2 rounded shadow-md font-medium"
+      {barCode && <><p className="absolute bottom-10 text-green-500 bg-white px-5 py-2 rounded-lg shadow-md font-medium">Detected Barcode: <span className="font-bold">{barCode}</span></p>
+      <button className=" absolute bottom-1 bg-blue-500 text-white px-5 py-2 rounded shadow-md font-medium"
       onClick={ handleScan} >
          Scan Now
       </button>
       </>
       || <button
-          className=" absolute bottom-3 z-[5] bg-blue-500 text-white px-5 py-2 rounded shadow-md font-medium"
+          className=" absolute bottom-3  bg-blue-500 text-white px-5 py-2 rounded shadow-md font-medium"
           onClick={startScanner}
         >
           Start Scanning
         </button>}
-      {error && <p className="absolute top-2 z-10 text-red-500 bg-white px-4 py-2 rounded-lg shadow-md font-medium">Error: <span className="font-bold">{error}</span></p>}
+      {error && <p className="absolute top-2 text-red-500 bg-white px-4 py-2 rounded-lg shadow-md font-medium">Error: <span className="font-bold">{error}</span></p>}
       
     </div>
 

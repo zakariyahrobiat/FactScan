@@ -2,9 +2,9 @@ import { Link } from "react-router-dom"
 import {FaBars} from "react-icons/fa"
 import UseAuth from "../../hooks/UseAuth"
 const NavBar = () => {
-  const {toggleMenu, isOpen, isScrolled}= UseAuth()
+  const {toggleMenu, isOpen, isScrolled, navRef}= UseAuth()
   return (
-    <header className={`flex justify-between items-center w-full px-5 md:px-20 py-3  fixed z-10 ${isScrolled ? "bg-white text-black shadow-2xl": "bg-transparent text-white"} transition-all duration-300`}>
+    <header ref={navRef} className={`flex justify-between items-center w-full px-5 md:px-20 py-3  fixed z-10 ${isScrolled ? "bg-white text-black shadow-2xl": "bg-transparent text-white"} transition-all duration-300`}>
       <Link to="/">
         <p className="font-mono font-bold text-lg">FactScan</p>
       </Link>

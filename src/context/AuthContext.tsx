@@ -25,7 +25,7 @@ handleInput:(e:React.ChangeEvent<HTMLInputElement>)=>void,
 startScanner:()=>void,
 productDetails:null | productDetail,
 handleScan:(e:React.FormEvent)=> void,
-// navRef:
+navRef:React.RefObject<HTMLDivElement>,
 }
 export const AppContext = createContext<AuthContextType>({
 toggleMenu:()=>{},
@@ -39,7 +39,7 @@ handleInput:()=>{},
 startScanner:()=>{},
 productDetails:null,
 handleScan:()=>{},
-// navRef:""
+navRef:{current:null}
 })
 export const AuthContext = ({children}:PropsWithChildren) => {
       const [isOpen, setIsOpen] = useState(false)
@@ -50,18 +50,21 @@ export const AuthContext = ({children}:PropsWithChildren) => {
   const [data, setData]= useState<inputField>({inputBarcode:""})  
   const [productData, setProductData] = useState({barcode:''})
   const [productDetails, setProductDetails] = useState<productDetail | null>(null)
-  // const navRef = useRef(null)
-  // useEffect(()=>{
-  //   const handleNavClickOutside=(event: MouseEvent)=>{
-  //   if(navRef.current && !navRef.current.contains(event.target as Node)){
-  //     setIsOpen(false)
-  //   }
-  // }
-  // document.addEventListener("mousedown", handleNavClickOutside)
-  // return()=>{
-  //   document.removeEventListener("mousedown", handleNavClickOutside)
-  // }
-  // },[])
+  const navRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const handleNavClickOutside = (event: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+  
+    document.addEventListener("mousedown", handleNavClickOutside);
+  
+    return () => {
+      document.removeEventListener("mousedown", handleNavClickOutside);
+    };
+  }, []);
+  
   useEffect(()=>{
     if (barCode){
 setProductData({barcode:barCode})
@@ -188,7 +191,7 @@ setProductDetails({
         startScanner:startScanner,
         productDetails:productDetails,
         handleScan:handleScan,
-        // navRef:navRef
+        navRef:navRef
     }}>{children}</AppContext.Provider>
   )
 }
