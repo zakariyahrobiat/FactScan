@@ -65,10 +65,10 @@ const CameraScanner = () => {
       <div className="w-full my-8 px-5 md:px-20 md:py-10 bg-white rounded shadow-md">
       <div className=" rounded bg-gray-50 p-6 md:px-20 shadow-md transition hover:border-2 hover:border-blue-500 hover:-translate-y-2">
         <h2 className="text-2xl font-bold text-center pb-5 text-gray-800">Scan Results</h2>
- <h3 className="text-lg font-bold pb-2">Product Name: <span className="font-semibold">{productDetails.product["Product Name"] }</span></h3>
- <p className="text-lg font-bold pb-2">Category: <span className="font-semibold">{productDetails.product.category }</span></p>
- <p className="text-lg font-bold pb-2">Authenticity: <span className="font-semibold">{productDetails.product.Authenticity }</span></p>
- <p className="font-bold text-lg ">{productDetails.message}</p>
+ <h3 className="text-lg font-bold pb-2">Product Name: <span className="font-semibold capitalize">{productDetails.product["Product Name"] }</span></h3>
+ <p className="text-lg font-bold pb-2">Category: <span className="font-semibold capitalize">{productDetails.product.category }</span></p>
+ <p className="text-lg font-bold pb-2">Authenticity: <span className="font-semibold capitalize">{productDetails.product.Authenticity }{productDetails.product.Authenticity === "Geninue" ? "✅": "❌"}</span></p>
+ <p className="font-bold text-lg capitalize">{productDetails.message}</p>
  <button className="bg-blue-500 text-white px-5 py-2 rounded shadow-md font-bold">Learn More</button>
 </div>
 </div>
