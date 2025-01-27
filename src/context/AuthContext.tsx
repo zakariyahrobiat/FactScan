@@ -144,6 +144,7 @@ setProductDetails({
 
       // Convert canvas content to an image URL
       const imageUrl = canvas.toDataURL("image/png");
+     setError(imageUrl);
       setBarcodeImage(imageUrl); // Save the captured image
     }
   }

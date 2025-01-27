@@ -75,13 +75,15 @@ const CameraScanner = () => {
 </div>
     ) 
     }
-{barcodeImage && (
-     
-     <img src={barcodeImage} alt="Scanned Barcode" style={{ width: "100%" }} />
-
- )}
- {error && <p style={{ color: "red" }}>{error}</p>}
+{barcodeImage ? (
+  <div className="w-full mt-4">
+    <p className="text-lg font-bold mb-2">Captured Barcode Image:</p>
+    <img src={barcodeImage} alt="Scanned Barcode" className="rounded shadow-md w-full" />
   </div>
+) : (
+  <p className="text-gray-500">No barcode image captured yet.</p>
+)}
+ </div>
  
   )
 }
