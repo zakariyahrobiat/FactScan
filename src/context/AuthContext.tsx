@@ -26,8 +26,7 @@ startScanner:()=>void,
 productDetails:null | productDetail,
 handleScan:(e:React.FormEvent)=> void,
 navRef:React.RefObject<HTMLDivElement>,
-barcodeImage:string|null, 
-canvasRef:React.RefObject<HTMLCanvasElement>
+
 }
 export const AppContext = createContext<AuthContextType>({
 toggleMenu:()=>{},
@@ -42,8 +41,7 @@ startScanner:()=>{},
 productDetails:null,
 handleScan:()=>{},
 navRef:{current:null},
-barcodeImage:null,
-canvasRef:{current:null}
+
 })
 export const AuthContext = ({children}:PropsWithChildren) => {
       const [isOpen, setIsOpen] = useState(false)
@@ -55,8 +53,7 @@ export const AuthContext = ({children}:PropsWithChildren) => {
   const [productData, setProductData] = useState({barcode:''})
   const [productDetails, setProductDetails] = useState<productDetail | null>(null)
   const navRef = useRef<HTMLDivElement>(null);
-  const [barcodeImage, setBarcodeImage] = useState<string|null>(null); 
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  
   useEffect(() => {
     const handleNavClickOutside = (event: MouseEvent) => {
       if (navRef.current && !navRef.current.contains(event.target as Node)) {
@@ -81,7 +78,7 @@ setProductData({barcode:barCode})
 
   },[barCode, data.inputBarcode])
   const handleScan = async()=>{
-    captureImage()
+
     
     const url = "https://product-scanner-cqro.onrender.com/api/v1/products/scan"
 
@@ -130,33 +127,6 @@ setProductDetails({
       const {name, value} = e.target
       setData((data)=>({...data, [name]:value}))
   } 
-  const captureImage = () => {
-    if (videoRef.current && canvasRef.current) {
-      const canvas = canvasRef.current;
-      const video = videoRef.current;
-      if (video.paused || video.ended) {
-        setError("Video is not playing");
-        return;
-      }
-  
-
-      // Set canvas size to match video feed
-      canvas.width = 100;
-      canvas.height = 100;
-
-      // Draw the current video frame to the canvas
-      const context = canvas.getContext("2d");
-      if (context){
-      context.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-      // Convert canvas content to an image URL
-      const imageUrl = canvas.toDataURL("image/png");
-    //  setError("image");
-      setBarcodeImage(imageUrl); // Save the captured image
-    }
-  }
-
-  };
   
     const codeReader = new BrowserMultiFormatReader();
    
@@ -174,7 +144,7 @@ setProductDetails({
           
           setBarCode(detectedBarcode); 
           setProductData({ barcode: detectedBarcode })
-          // captureImage()
+         
           console.log("Barcode detected:", result.getText());
          
         }
@@ -227,8 +197,7 @@ setProductDetails({
         productDetails:productDetails,
         handleScan:handleScan,
         navRef:navRef,
-        barcodeImage:barcodeImage,
-        canvasRef:canvasRef
+        
     }}>{children}</AppContext.Provider>
   )
 }
