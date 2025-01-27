@@ -83,6 +83,7 @@ const CameraScanner = () => {
 ) : (
   <p className="text-gray-500">No barcode image captured yet.</p>
 )}
+
  </div>
  
   )

@@ -132,6 +132,11 @@ setProductDetails({
     if (videoRef.current && canvasRef.current) {
       const canvas = canvasRef.current;
       const video = videoRef.current;
+      if (video.paused || video.ended) {
+        setError("Video is not playing");
+        return;
+      }
+  
 
       // Set canvas size to match video feed
       canvas.width = video.videoWidth;
@@ -147,6 +152,9 @@ setProductDetails({
      setError("image");
       setBarcodeImage(imageUrl); // Save the captured image
     }
+  }
+  else {
+    setError("Canvas or video element is not available.");
   }
   };
   
