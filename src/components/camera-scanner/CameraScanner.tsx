@@ -3,7 +3,7 @@ import UseAuth from "../../hooks/UseAuth"
 
 const CameraScanner = () => {
 
-    const {error, videoRef, barCode, data, handleInput, productDetails, startScanner, handleScan, barcodeImage} = UseAuth() 
+    const {error, videoRef, barCode, data, handleInput, productDetails, startScanner, handleScan} = UseAuth() 
     
     const {inputBarcode}= data
   return (
