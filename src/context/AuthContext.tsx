@@ -141,8 +141,8 @@ setProductDetails({
   
 
       // Set canvas size to match video feed
-      canvas.width = video.videoWidth;
-      canvas.height = video.videoHeight;
+      canvas.width = 100;
+      canvas.height = 100;
 
       // Draw the current video frame to the canvas
       const context = canvas.getContext("2d");
@@ -151,13 +151,11 @@ setProductDetails({
 
       // Convert canvas content to an image URL
       const imageUrl = canvas.toDataURL("image/png");
-     setError("image");
+    //  setError("image");
       setBarcodeImage(imageUrl); // Save the captured image
     }
   }
-  else {
-    setError("Canvas or video element is not available.");
-  }
+
   };
   
     const codeReader = new BrowserMultiFormatReader();
@@ -176,7 +174,7 @@ setProductDetails({
           
           setBarCode(detectedBarcode); 
           setProductData({ barcode: detectedBarcode })
-          captureImage()
+          // captureImage()
           console.log("Barcode detected:", result.getText());
          
         }
