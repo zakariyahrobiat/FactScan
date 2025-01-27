@@ -79,7 +79,7 @@ setProductData({barcode:barCode})
 
   },[barCode, data.inputBarcode])
   const handleScan = async()=>{
-
+    captureImage()
     
     const url = "https://product-scanner-cqro.onrender.com/api/v1/products/scan"
 
@@ -144,7 +144,7 @@ setProductDetails({
 
       // Convert canvas content to an image URL
       const imageUrl = canvas.toDataURL("image/png");
-     setError(imageUrl);
+     setError("image");
       setBarcodeImage(imageUrl); // Save the captured image
     }
   }
