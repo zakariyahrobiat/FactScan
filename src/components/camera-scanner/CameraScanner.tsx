@@ -3,7 +3,7 @@ import UseAuth from "../../hooks/UseAuth"
 
 const CameraScanner = () => {
 
-    const {error, videoRef, barCode, data, handleInput, productDetails, startScanner, handleScan, barcodeImage} = UseAuth() 
+    const {error, videoRef, barCode, data, handleInput, productDetails, startScanner, handleScan, barcodeImage, canvasRef} = UseAuth() 
     
     const {inputBarcode}= data
   return (
@@ -15,7 +15,7 @@ const CameraScanner = () => {
     
       {/* <p className="text-gray-500">Align the barcode within the frame.</p> */}
       <video ref={videoRef} className=" rounded shadow-md" />
-     
+      <canvas ref={canvasRef} style={{ display: 'none' }} />
       {barCode && <><p className="absolute bottom-10 text-green-500 bg-white px-5 py-2 rounded-lg shadow-md font-medium">Detected Barcode: <span className="font-bold">{barCode}</span></p>
       <button className=" absolute bottom-1 bg-blue-500 text-white px-5 py-2 rounded shadow-md font-medium"
       onClick={ handleScan} >

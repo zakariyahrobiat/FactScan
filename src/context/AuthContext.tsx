@@ -26,7 +26,8 @@ startScanner:()=>void,
 productDetails:null | productDetail,
 handleScan:(e:React.FormEvent)=> void,
 navRef:React.RefObject<HTMLDivElement>,
-barcodeImage:string|null
+barcodeImage:string|null, 
+canvasRef:React.RefObject<HTMLCanvasElement>
 }
 export const AppContext = createContext<AuthContextType>({
 toggleMenu:()=>{},
@@ -41,7 +42,8 @@ startScanner:()=>{},
 productDetails:null,
 handleScan:()=>{},
 navRef:{current:null},
-barcodeImage:null
+barcodeImage:null,
+canvasRef:{current:null}
 })
 export const AuthContext = ({children}:PropsWithChildren) => {
       const [isOpen, setIsOpen] = useState(false)
@@ -227,7 +229,8 @@ setProductDetails({
         productDetails:productDetails,
         handleScan:handleScan,
         navRef:navRef,
-        barcodeImage:barcodeImage
+        barcodeImage:barcodeImage,
+        canvasRef:canvasRef
     }}>{children}</AppContext.Provider>
   )
 }
