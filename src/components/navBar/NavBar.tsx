@@ -13,13 +13,15 @@ const NavBar = () => {
         <li className="p-4 md:p-0"><Link to="" className="hover:text-gray-400 font-bold md:font-medium">Search</Link></li>
         <li className="p-4 md:p-0 "><Link to="" className="hover:text-gray-400 font-bold md:font-medium">About</Link></li>
         <li className="p-3 md:p-0"><Link to="" className="hover:text-gray-400 font-bold md:font-medium">Contact</Link></li>
-        <button className="my-3 md:m-0 md:hidden bg-button text-white py-1 px-3 md:py-2 md:px-5 font-bold rounded-lg w-full">
+        <Link to="/register"><button className="my-3 md:m-0 md:hidden bg-button text-white py-1 px-3 md:py-2 md:px-5 font-bold rounded-lg w-full">
       Sign Up
       </button>
+      </Link>
           </ul>
-      <button className="hidden md:block bg-button text-white py-1 px-3 md:py-2 md:px-5 font-bold rounded-lg">
+      <Link to="/register"><button className="hidden md:block bg-button text-white py-1 px-3 md:py-2 md:px-5 font-bold rounded-lg">
       Sign Up
       </button>
+      </Link>
       <div className="md:hidden text-2xl focus:outline-none" onClick={toggleMenu}>
       <FaBars/>
       </div>
